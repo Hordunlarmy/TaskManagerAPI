@@ -18,7 +18,10 @@ THIRD_PARTY_APPS = [
 ]
 
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    "src.oauth",
+    "src.user",
+]
 
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS  # noqa
@@ -33,6 +36,7 @@ INTERNAL_IPS = [
 ]
 
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -42,6 +46,8 @@ REST_FRAMEWORK = {
         "rest_framework.filters.SearchFilter",
     ],
 }
+
+SWAGGER_SETTINGS = {"SECURITY_DEFINITIONS": {"Basic": {"type": "basic"}}}
 
 
 # MEDIA_URL = "/media/"
@@ -65,6 +71,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 
 APPEND_SLASH = True
+AUTH_USER_MODEL = "user.User"
 
 
 def get_app_list(self, request, app_label=None):

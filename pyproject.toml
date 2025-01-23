@@ -16,6 +16,9 @@ django-cors-headers = "^4.6.0"
 django-debug-toolbar = "^5.0.1"
 psycopg2 = "^2.9.10"
 uvicorn = "^0.34.0"
+drf-spectacular = {extras = ["swagger-ui"], version = "^0.28.0"}
+django-rest-swagger = "^2.2.0"
+drf-yasg = "^1.21.8"
 
 
 [build-system]
