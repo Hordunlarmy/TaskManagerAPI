@@ -15,6 +15,7 @@ drf-standardized-errors = "^0.14.1"
 django-cors-headers = "^4.6.0"
 django-debug-toolbar = "^5.0.1"
 psycopg2 = "^2.9.10"
+uvicorn = "^0.34.0"
 
 
 [build-system]

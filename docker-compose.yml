@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    container_name: taskmanager
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+      - taskmanager_network
+    restart: always
+
+
+networks:
+  taskmanager_network:
+    driver: bridge
