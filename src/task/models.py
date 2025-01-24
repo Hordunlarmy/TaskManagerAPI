@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 from src.shared.basemodel import BaseModel
+from src.shared.email import sender
 
 
 class Task(BaseModel):
@@ -33,28 +36,42 @@ class Task(BaseModel):
     def __str__(self):
         return self.name
 
-    def get_status_display(self):
-        """
-        Returns the human-readable status of the task.
-        """
-        return dict(self.STATUS_CHOICES).get(self.status, "Unknown")
 
-    def update_status(self, status):
-        """
-        Updates the status of the task.
-        """
-        if status in dict(self.STATUS_CHOICES):
-            self.status = status
-            self.save()
+@receiver(pre_save, sender=Task)
+def send_status_change_email(instance, **kwargs):
+    """
+    Send an email to the user when the task status is changed to
+    'Complete'.
+    """
+    if instance.pk and instance.status == "Complete":
+        try:
+            previous_task = Task.objects.get(pk=instance.pk)
+            if previous_task.status != "Complete":
+                user = instance.user
 
-    def mark_as_complete(self):
-        """
-        Marks the task as complete.
-        """
-        self.update_status("Complete")
+                sender.send_new_user_verification(
+                    recipient_email=user.email,
+                    recipient_name=user.first_name,
+                    template_variables={
+                        "name": user.first_name,
+                        "task_name": instance.name,
+                        "task_status": instance.status,
+                        "task_desc": instance.description,
+                        "task_time": instance.created_at,
+                    },
+                )
+        except Task.DoesNotExist:
+            if instance.status == "Complete":
+                user = instance.user
 
-    def mark_as_incomplete(self):
-        """
-        Marks the task as incomplete.
-        """
-        self.update_status("Incomplete")
+                sender.send_new_user_verification(
+                    recipient_email=user.email,
+                    recipient_name=user.first_name,
+                    template_variables={
+                        "name": user.first_name,
+                        "task_name": instance.name,
+                        "task_status": instance.status,
+                        "task_desc": instance.description,
+                        "task_time": instance.created_at,
+                    },
+                )
