@@ -369,6 +369,7 @@ inflection = ">=0.3.1"
 packaging = ">=21.0"
 pytz = ">=2021.1"
 pyyaml = ">=5.1"
+swagger-spec-validator = {version = ">=2.1.0", optional = true, markers = "extra == \"validation\""}
 uritemplate = ">=3.0.0"
 
 [package.extras]
@@ -399,6 +400,25 @@ files = [
 
 [package.extras]
 all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2)"]
+
+[[package]]
+name = "importlib-resources"
+version = "6.5.2"
+description = "Read resources from Python packages"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "importlib_resources-6.5.2-py3-none-any.whl", hash = "sha256:789cfdc3ed28c78b67a06acb8126751ced69a3d5f79c095a98298cd8a760ccec"},
+    {file = "importlib_resources-6.5.2.tar.gz", hash = "sha256:185f87adef5bcc288449d98fb4fba07cea78bc036455dd44c5fc4a2fe78fed2c"},
+]
+
+[package.extras]
+check = ["pytest-checkdocs (>=2.4)", "pytest-ruff (>=0.2.1)"]
+cover = ["pytest-cov"]
+doc = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-lint"]
+enabler = ["pytest-enabler (>=2.2)"]
+test = ["jaraco.test (>=5.4)", "pytest (>=6,!=8.1.*)", "zipp (>=3.17)"]
+type = ["pytest-mypy"]
 
 [[package]]
 name = "inflection"
@@ -971,6 +991,23 @@ dev = ["build", "hatch"]
 doc = ["sphinx"]
 
 [[package]]
+name = "swagger-spec-validator"
+version = "3.0.4"
+description = "Validation of Swagger specifications"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "swagger_spec_validator-3.0.4-py2.py3-none-any.whl", hash = "sha256:1a2a4f4f7076479ae7835d892dd53952ccca9414efa172c440c775cf0ac01f48"},
+    {file = "swagger_spec_validator-3.0.4.tar.gz", hash = "sha256:637ac6d865270bfcd07df24605548e6e1f1d9c39adcfd855da37fa3fdebfed4b"},
+]
+
+[package.dependencies]
+importlib-resources = ">=1.3"
+jsonschema = "*"
+pyyaml = "*"
+typing-extensions = "*"
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1041,4 +1078,4 @@ standard = ["colorama (>=0.4)", "httptools (>=0.6.3)", "python-dotenv (>=0.13)",
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "d682f5e9319fc2877ec25490288ae737b62bd21abf93d1596e6aaefd8cb72808"
+content-hash = "ca8bca521551ec19848b075f28daf2e97b1618b3362abd26a96759d9d167dd99"
