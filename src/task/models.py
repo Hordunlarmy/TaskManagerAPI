@@ -49,7 +49,7 @@ def send_status_change_email(instance, **kwargs):
             if previous_task.status != "Complete":
                 user = instance.user
 
-                sender.send_new_user_verification(
+                sender.send_status_email(
                     recipient_email=user.email,
                     recipient_name=user.first_name,
                     template_variables={
