@@ -48,18 +48,7 @@ REST_FRAMEWORK = {
     ],
 }
 
-SWAGGER_SETTINGS = {
-    "SECURITY_DEFINITIONS": {
-        "Bearer": {
-            "type": "apiKey",
-            "name": "Authorization",
-            "in": "header",
-            "description": "Enter your JWT token => format: Bearer <token>",
-        }
-    },
-    "USE_SESSION_AUTH": False,
-}
-CORS_ORIGIN_ALLOW_ALL = True
+SWAGGER_SETTINGS = {"SECURITY_DEFINITIONS": {"Basic": {"type": "basic"}}}
 
 
 # MEDIA_URL = "/media/"
@@ -79,6 +68,7 @@ SIMPLE_JWT = {
 
 CSRF_TRUSTED_ORIGINS = [
     "http://0.0.0.0",
+    "https://tm.0ps.tech",
 ]
 
 
