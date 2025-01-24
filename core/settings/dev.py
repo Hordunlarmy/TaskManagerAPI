@@ -48,7 +48,10 @@ REST_FRAMEWORK = {
     ],
 }
 
-SWAGGER_SETTINGS = {"SECURITY_DEFINITIONS": {"Basic": {"type": "basic"}}}
+SWAGGER_SETTINGS = {
+    "USE_SESSION_AUTH": False,
+    "SECURITY_DEFINITIONS": None,
+}
 
 
 # MEDIA_URL = "/media/"
