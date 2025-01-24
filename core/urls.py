@@ -58,6 +58,7 @@ urlpatterns = [
             ("src.oauth.urls", "authentication"), namespace="authentication"
         ),
     ),
+    path("api/tasks/", include(("src.task.urls", "tasks"), namespace="tasks")),
 ]
 
 

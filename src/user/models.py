@@ -57,6 +57,8 @@ class User(AbstractBaseUser, BaseModel, PermissionsMixin):
 
     USERNAME_FIELD = "email"
 
+    objects = CustomUserManager()
+
     class Meta:
         verbose_name = "user"
         verbose_name_plural = "users"

@@ -21,6 +21,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "src.oauth",
     "src.user",
+    "src.task",
 ]
 
 
