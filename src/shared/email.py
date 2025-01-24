@@ -58,7 +58,7 @@ class Email:
         self, recipient_email, recipient_name, template_variables: dict
     ):
         return self._send_email(
-            template_key=self.templates.user_verification,
+            template_key=self.templates.status,
             recipient_email=recipient_email,
             recipient_name=recipient_name,
             merge_info=template_variables,

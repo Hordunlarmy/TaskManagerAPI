@@ -57,21 +57,20 @@ def send_status_change_email(instance, **kwargs):
                         "task_name": instance.name,
                         "task_status": instance.status,
                         "task_desc": instance.description,
-                        "task_time": instance.created_at,
                     },
                 )
         except Task.DoesNotExist:
             if instance.status == "Complete":
                 user = instance.user
+                name = user.email if user.email else ""
 
                 sender.send_status_email(
                     recipient_email=user.email,
-                    recipient_name=user.first_name,
+                    recipient_name=name,
                     template_variables={
                         "name": user.first_name,
                         "task_name": instance.name,
                         "task_status": instance.status,
                         "task_desc": instance.description,
-                        "task_time": instance.created_at,
                     },
                 )
