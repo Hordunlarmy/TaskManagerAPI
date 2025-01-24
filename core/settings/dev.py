@@ -49,9 +49,17 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
+    "SECURITY_DEFINITIONS": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter your JWT token => format: Bearer <token>",
+        }
+    },
     "USE_SESSION_AUTH": False,
-    "SECURITY_DEFINITIONS": None,
 }
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 # MEDIA_URL = "/media/"
